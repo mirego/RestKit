@@ -22,6 +22,10 @@
 #import "RKMappingResult.h"
 #import "RKMapperOperation.h"
 
+@interface NSCachedURLResponse (RKLeakFix)
+- (NSData *)rkData;
+@end
+
 /**
  The key for a Boolean NSNumber value that indicates if a `NSCachedURLResponse` stored in the `NSURLCache` has been object mapped to completion. This key is stored on the `userInfo` of the cached response, if any, just before an `RKObjectRequestOperation` transitions to the finished state.
  */
@@ -81,7 +85,7 @@ extern NSString * const RKResponseHasBeenMappedCacheUserInfoKey;
  
  This is the designated initializer.
  
- @param requestOperation The request object to be used with the underlying network operation.
+ @param request The request object to be used with the underlying network operation.
  @param responseDescriptors An array of `RKResponseDescriptor` objects specifying how object mapping is to be performed on the response loaded by the network operation.
  @return The receiver, initialized with the given request and response descriptors.
  */
